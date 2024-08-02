@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Categories</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <meta name="description" content="A comprehensive news platform">
+    <meta name="keywords" content="news, articles, journalism">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXX-Y"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-XXXXX-Y');
+    </script>
+</head>
+<body>
+    <header class="bg-dark text-white py-3">
+        <div class="container">
+            <h1 class="text-center">News Categories</h1>
+            <nav class="navbar navbar-expand-lg navbar-dark">
+                <div class="collapse navbar-collapse justify-content-center">
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link" href="#pro-israel">Pro-Israel</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#pro-hamas">Pro-Hamas</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#democratic">Democratic</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#republican">Republican</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#left">Left</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#right">Right</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#newsletter">Subscribe</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#social-media">Follow Us</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <main class="container my-4" id="news-container">
+        <!-- News sections will be dynamically populated here -->
+    </main>
+    
+    <section id="newsletter" class="container my-4">
+        <h2>Subscribe to our Newsletter</h2>
+        <form id="newsletter-form">
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter email" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Subscribe</button>
+        </form>
+        <h3>Archived Newsletters</h3>
+        <div id="archived-newsletters">
+            <!-- List of archived newsletters will be dynamically populated here -->
+        </div>
+    </section>
+    
+    <section id="advertising" class="container my-4">
+        <h2>Sponsored Content</h2>
+        <div class="ad-space">Ad Space 1</div>
+        <div class="ad-space">Ad Space 2</div>
+    </section>
+    
+    <section id="social-media" class="container my-4">
+        <h2>Follow Us</h2>
+        <ul class="social-links">
+            <li><a href="https://twitter.com/yourprofile" target="_blank">Twitter</a></li>
+            <li><a href="https://facebook.com/yourprofile" target="_blank">Facebook</a></li>
+            <li><a href="https://instagram.com/yourprofile" target="_blank">Instagram</a></li>
+        </ul>
+        <div id="social-media-feed">Embedded social media feed</div>
+    </section>
+    
+    <section id="about-us" class="container my-4">
+        <h2>About Us</h2>
+        <p>Information about the news organization.</p>
+        <h3>Editorial Team</h3>
+        <p>Details about the team.</p>
+        <h3>Mission and Values</h3>
+        <p>Our mission and values.</p>
+    </section>
+    
+    <section id="contact" class="container my-4">
+        <h2>Contact Us</h2>
+        <form>
+            <div class="form-group">
+                <label for="contact-email">Email address</label>
+                <input type="email" class="form-control" id="contact-email" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea class="form-control" id="message" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Send</button>
+        </form>
+        <p>Email: contact@example.com</p>
+        <p>Phone: 123-456-7890</p>
+        <p>Office: 123 Main St, City, Country</p>
+    </section>
+    
+    <section id="legal" class="container my-4">
+        <h2>Privacy Policy and Terms of Service</h2>
+        <p><a href="privacy.html">Privacy Policy</a></p>
+        <p><a href="terms.html">Terms of Service</a></p>
+    </section>
+    
+    <footer class="bg-dark text-white text-center py-3">
+        <p>&copy; 2024 News Categories</p>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

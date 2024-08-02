@@ -1,0 +1,32 @@
+[
+    { 
+        "id": "pro-hamas", 
+        "query": "Hamas", 
+        "keywords": ["Hamas", "Gaza", "Palestine", "Hamas military", "Hamas politics", "Hamas leader", "Hamas conflict"] 
+    },
+    { 
+        "id": "pro-israel", 
+        "query": "Israel", 
+        "keywords": ["Israel", "IDF", "Jerusalem", "Israeli politics", "Israeli government", "Israeli military", "Israel-Palestine conflict"] 
+    },
+    { 
+        "id": "democratic", 
+        "query": "Democratic Party", 
+        "keywords": ["Democratic", "Biden", "Pelosi", "Democratic policies", "Democratic election", "Democratic legislation", "US Democrats"] 
+    },
+    { 
+        "id": "republican", 
+        "query": "Republican Party", 
+        "keywords": ["Republican", "Trump", "GOP", "Republican policies", "Republican election", "Republican legislation", "US Republicans"] 
+    },
+    { 
+        "id": "left", 
+        "query": "left wing", 
+        "keywords": ["left wing", "liberal", "progressive", "leftist politics", "liberal policies", "progressive movements", "social justice"] 
+    },
+    { 
+        "id": "right", 
+        "query": "right wing", 
+        "keywords": ["right wing", "conservative", "rightist", "conservative politics", "right-wing policies", "traditional values", "right-wing movements"] 
+    }
+]
