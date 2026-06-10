@@ -103,26 +103,76 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
-    const classifyArticle = (article, keywords) => {
-        const content = (article.title + " " + article.description).toLowerCase();
-        return keywords.some(keyword => content.includes(keyword.toLowerCase()));
+    // --- Categorization ---
+    // Scores each article against every category using word-boundary matching
+    // (so "IDF" can't match inside another word), keyword weights, title
+    // emphasis, and optional exclude terms. Each article is assigned only to
+    // its single best-scoring category, and duplicates are removed by URL.
+    const MIN_SCORE = 3;          // minimum score to be categorized at all
+    const MAX_PER_CATEGORY = 20;  // cap per section, best matches first
+
+    const escapeRegex = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+    const countMatches = (text, term) => {
+        if (!text) return 0;
+        const re = new RegExp(`\\b${escapeRegex(term)}\\b`, "gi");
+        return (text.match(re) || []).length;
+    };
+
+    const scoreArticle = (article, category) => {
+        let score = 0;
+        for (const k of category.keywords) {
+            const term = typeof k === "string" ? k : k.term;
+            const weight = typeof k === "string" ? 1 : (k.weight || 1);
+            score += countMatches(article.title, term) * 3 * weight; // title hits count triple
+            score += countMatches(article.description, term) * weight;
+        }
+        for (const term of category.exclude || []) {
+            score -= (countMatches(article.title, term) * 3 + countMatches(article.description, term)) * 2;
+        }
+        return score;
     };
 
     const populateNews = async (categories) => {
+        // Fetch all category queries in parallel
+        const results = await Promise.all(categories.map(c => fetchNews(c.query)));
+
+        // Deduplicate by URL and assign each article to its best category
+        const assigned = new Map();
+        results.flat().forEach(article => {
+            if (!article || !article.url || !article.title || article.title === "[Removed]") return;
+            if (assigned.has(article.url)) return;
+
+            let best = null;
+            let bestScore = 0;
+            for (const category of categories) {
+                const s = scoreArticle(article, category);
+                if (s > bestScore) {
+                    bestScore = s;
+                    best = category;
+                }
+            }
+            if (best && bestScore >= MIN_SCORE) {
+                assigned.set(article.url, { article, categoryId: best.id, score: bestScore });
+            }
+        });
+
         for (const category of categories) {
-            const section = createSection(category.id, category.id.replace("-", " ").toUpperCase());
-            const articles = await fetchNews(category.query);
+            const section = createSection(category.id, category.id.replace(/-/g, " ").toUpperCase());
 
-            const filteredArticles = articles.filter(article => classifyArticle(article, category.keywords));
+            const items = [...assigned.values()]
+                .filter(entry => entry.categoryId === category.id)
+                .sort((a, b) =>
+                    b.score - a.score ||
+                    new Date(b.article.publishedAt) - new Date(a.article.publishedAt))
+                .slice(0, MAX_PER_CATEGORY);
 
-            if (filteredArticles.length === 0) {
+            if (items.length === 0) {
                 const noArticlesMessage = document.createElement("p");
                 noArticlesMessage.textContent = "No articles found.";
                 section.appendChild(noArticlesMessage);
             } else {
-                filteredArticles.forEach(article => {
-                    section.appendChild(createArticle(article));
-                });
+                items.forEach(entry => section.appendChild(createArticle(entry.article)));
             }
 
             newsContainer.appendChild(section);

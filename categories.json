@@ -1,32 +1,82 @@
 [
-    { 
-        "id": "pro-hamas", 
-        "query": "Hamas", 
-        "keywords": ["Hamas", "Gaza", "Palestine", "Hamas military", "Hamas politics", "Hamas leader", "Hamas conflict"] 
+    {
+        "id": "pro-israel",
+        "query": "Israel OR Israeli OR IDF OR Netanyahu",
+        "keywords": [
+            { "term": "Israel", "weight": 1 },
+            { "term": "Israeli", "weight": 1 },
+            { "term": "IDF", "weight": 3 },
+            { "term": "Israeli military", "weight": 3 },
+            { "term": "Israeli government", "weight": 3 },
+            { "term": "Netanyahu", "weight": 2 },
+            { "term": "Knesset", "weight": 3 },
+            { "term": "Jerusalem", "weight": 2 },
+            { "term": "Tel Aviv", "weight": 2 }
+        ]
     },
-    { 
-        "id": "pro-israel", 
-        "query": "Israel", 
-        "keywords": ["Israel", "IDF", "Jerusalem", "Israeli politics", "Israeli government", "Israeli military", "Israel-Palestine conflict"] 
+    {
+        "id": "pro-hamas",
+        "query": "Hamas OR Gaza OR Palestinian",
+        "keywords": [
+            { "term": "Hamas", "weight": 3 },
+            { "term": "Gaza", "weight": 2 },
+            { "term": "Palestinian", "weight": 1 },
+            { "term": "Palestine", "weight": 1 },
+            { "term": "West Bank", "weight": 2 },
+            { "term": "Hamas leader", "weight": 3 },
+            { "term": "ceasefire", "weight": 1 }
+        ]
     },
-    { 
-        "id": "democratic", 
-        "query": "Democratic Party", 
-        "keywords": ["Democratic", "Biden", "Pelosi", "Democratic policies", "Democratic election", "Democratic legislation", "US Democrats"] 
+    {
+        "id": "democratic",
+        "query": "\"Democratic Party\" OR Democrats OR Biden",
+        "keywords": [
+            { "term": "Democratic Party", "weight": 3 },
+            { "term": "Democrats", "weight": 2 },
+            { "term": "Democrat", "weight": 2 },
+            { "term": "Biden", "weight": 2 },
+            { "term": "Pelosi", "weight": 2 },
+            { "term": "DNC", "weight": 3 }
+        ],
+        "exclude": [ "Republican", "GOP" ]
     },
-    { 
-        "id": "republican", 
-        "query": "Republican Party", 
-        "keywords": ["Republican", "Trump", "GOP", "Republican policies", "Republican election", "Republican legislation", "US Republicans"] 
+    {
+        "id": "republican",
+        "query": "\"Republican Party\" OR GOP OR Trump",
+        "keywords": [
+            { "term": "Republican Party", "weight": 3 },
+            { "term": "Republicans", "weight": 2 },
+            { "term": "Republican", "weight": 2 },
+            { "term": "Trump", "weight": 2 },
+            { "term": "GOP", "weight": 3 },
+            { "term": "RNC", "weight": 3 }
+        ],
+        "exclude": [ "Democrat", "Democrats" ]
     },
-    { 
-        "id": "left", 
-        "query": "left wing", 
-        "keywords": ["left wing", "liberal", "progressive", "leftist politics", "liberal policies", "progressive movements", "social justice"] 
+    {
+        "id": "left",
+        "query": "progressive OR liberal OR \"left wing\"",
+        "keywords": [
+            { "term": "left wing", "weight": 3 },
+            { "term": "left-wing", "weight": 3 },
+            { "term": "progressive", "weight": 2 },
+            { "term": "liberal", "weight": 2 },
+            { "term": "leftist", "weight": 3 },
+            { "term": "social justice", "weight": 2 }
+        ],
+        "exclude": [ "conservative", "right wing", "right-wing" ]
     },
-    { 
-        "id": "right", 
-        "query": "right wing", 
-        "keywords": ["right wing", "conservative", "rightist", "conservative politics", "right-wing policies", "traditional values", "right-wing movements"] 
+    {
+        "id": "right",
+        "query": "conservative OR \"right wing\"",
+        "keywords": [
+            { "term": "right wing", "weight": 3 },
+            { "term": "right-wing", "weight": 3 },
+            { "term": "conservative", "weight": 2 },
+            { "term": "conservatives", "weight": 2 },
+            { "term": "rightist", "weight": 3 },
+            { "term": "traditional values", "weight": 2 }
+        ],
+        "exclude": [ "liberal", "left wing", "left-wing" ]
     }
 ]
