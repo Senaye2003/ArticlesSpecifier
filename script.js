@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const apiKey = '838612011db24fada49a997af0af5d5c'; 
     const newsContainer = document.getElementById("news-container");
     const archivedNewsletters = JSON.parse(localStorage.getItem('archivedNewsletters')) || [];
     const subscriberEmails = JSON.parse(localStorage.getItem('subscriberEmails')) || [];
@@ -86,21 +85,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const fetchNews = async (query) => {
         try {
-            const date = new Date();
-            const toDate = date.toISOString().split('T')[0];
-            date.setDate(date.getDate() - 30);
-            const fromDate = date.toISOString().split('T')[0];
-            const url = `https://newsapi.org/v2/everything?q=${encodeURIComponent(query)}&from=${fromDate}&to=${toDate}&sortBy=publishedAt&apiKey=${apiKey}`;
-            
+            const url = `/.netlify/functions/news?q=${encodeURIComponent(query)}`;
+
             console.log(`Fetching news for query: ${query}`);
-            console.log(`Request URL: ${url}`);
 
             const response = await fetch(url);
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+            const data = await response.json();
+            if (!response.ok || data.status === "error") {
+                throw new Error(data.message || data.error || `HTTP error! status: ${response.status}`);
             }
 
-            const data = await response.json();
             console.log(`Fetched ${data.articles.length} articles for query: ${query}`);
             return data.articles;
         } catch (error) {
