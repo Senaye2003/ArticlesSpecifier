@@ -1,67 +1,27 @@
-# Article Specifier README
+# News Categories
 
-## Overview
+A website that collects recent news articles and sorts them into categories — Pro-Israel, Pro-Hamas, Democratic, Republican, Left, and Right — so you can compare how different sides cover the news.
 
-The Article Specifier project dynamically fetches and displays news articles based on predefined categories. It uses HTML, CSS, and JavaScript for a user-friendly interface and includes features like newsletter subscription and article archiving.
+**Live site:** https://newscategories.netlify.app
 
-## Project Structure
+## What it does
 
-	•	index.html: Main HTML file.
-	•	privacy.html: Privacy policy details.
-	•	terms.html: Terms of service.
-	•	styles.css: Styling for the application.
-	•	script.js: JavaScript for dynamic functionality.
-	•	categories.json: JSON file with categories and keywords.
+- Pulls fresh articles from NewsAPI.org
+- Sorts each article into the category it matches best
+- Lets you archive articles to read later
+- Has a newsletter signup and a contact form
 
-### Files and Directories
+## Main files
 
-#### index.html
+- `index.html` — the page
+- `script.js` — fetches and sorts the articles
+- `categories.json` — the categories and their keywords (edit this to change sorting)
+- `netlify/functions/news.js` — gets the articles from NewsAPI without exposing the API key
 
-	•	Header: Site title and navigation.
-	•	Main Content: Dynamically populated news articles.
-	•	Sections: Newsletter, Social Media, About Us, Contact, Legal.
-	•	Footer: Copyright information.
+## Run your own copy
 
-#### privacy.html
-
-Details the privacy policy including information collection and usage.
-
-#### terms.html
-
-Outlines the terms of service and usage conditions.
-
-#### styles.css
-
-Defines the styling for the website.
-
-#### script.js
-
-	•	Fetches news articles using the News API.
-	•	Creates and displays sections and articles.
-	•	Handles article archiving and newsletter subscription.
-
-#### categories.json
-
-Defines categories and keywords for fetching news articles.
-
-## Setup and Usage
-
-	1.	Download or clone the repository.
-	2.	Open index.html in a web browser to view the application.
-
-## Fetching News Articles
-
-Uses the News API. Set a valid API key in script.js.
-
-## Contact and Support
-
-	•	Email: contact@example.com
-	•	Phone: 123-456-7890
-
-## License
-
-Licensed under the [Your License] License. See the LICENSE file for details.
-
-## Contributions
-
-Contributions are welcome! Submit pull requests or open issues for changes or enhancements.
+1. Connect this repo to a Netlify site
+2. Get a free API key at [newsapi.org](https://newsapi.org)
+3. In Netlify, add an environment variable named `NEWS_API_KEY` with your key
+4. In Netlify, go to Forms → Form notifications and add your email to receive contact messages
+5. Deploy
