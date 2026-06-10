@@ -10,13 +10,6 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <meta name="description" content="A comprehensive news platform">
     <meta name="keywords" content="news, articles, journalism">
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXX-Y"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'UA-XXXXX-Y');
-    </script>
 </head>
 <body>
     <header class="bg-dark text-white py-3">
@@ -32,7 +25,6 @@
                         <li class="nav-item"><a class="nav-link" href="#left">Left</a></li>
                         <li class="nav-item"><a class="nav-link" href="#right">Right</a></li>
                         <li class="nav-item"><a class="nav-link" href="#newsletter">Subscribe</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#social-media">Follow Us</a></li>
                         <li class="nav-item"><a class="nav-link" href="#contact">Contact Us</a></li>
                     </ul>
                 </div>
@@ -42,7 +34,7 @@
     <main class="container my-4" id="news-container">
         <!-- News sections will be dynamically populated here -->
     </main>
-
+    
     <section id="newsletter" class="container my-4">
         <h2>Subscribe to our Newsletter</h2>
         <form id="newsletter-form">
@@ -57,56 +49,37 @@
             <!-- List of archived newsletters will be dynamically populated here -->
         </div>
     </section>
-
-    <section id="advertising" class="container my-4">
-        <h2>Sponsored Content</h2>
-        <div class="ad-space">Ad Space 1</div>
-        <div class="ad-space">Ad Space 2</div>
-    </section>
-
-    <section id="social-media" class="container my-4">
-        <h2>Follow Us</h2>
-        <ul class="social-links">
-            <li><a href="https://twitter.com/yourprofile" target="_blank">Twitter</a></li>
-            <li><a href="https://facebook.com/yourprofile" target="_blank">Facebook</a></li>
-            <li><a href="https://instagram.com/yourprofile" target="_blank">Instagram</a></li>
-        </ul>
-        <div id="social-media-feed">Embedded social media feed</div>
-    </section>
-
-    <section id="about-us" class="container my-4">
-        <h2>About Us</h2>
-        <p>Information about the news organization.</p>
-        <h3>Editorial Team</h3>
-        <p>Details about the team.</p>
-        <h3>Mission and Values</h3>
-        <p>Our mission and values.</p>
-    </section>
-
+    
     <section id="contact" class="container my-4">
         <h2>Contact Us</h2>
-        <form>
+        <p>Have a question, suggestion, or spotted a problem? Send a message and it goes straight to my inbox.</p>
+        <form name="contact" method="POST" action="/thanks.html" data-netlify="true" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="contact">
+            <p class="d-none">
+                <label>Don't fill this out if you're human: <input name="bot-field"></label>
+            </p>
+            <div class="form-group">
+                <label for="contact-name">Your name</label>
+                <input type="text" class="form-control" id="contact-name" name="name" placeholder="Enter your name" required>
+            </div>
             <div class="form-group">
                 <label for="contact-email">Email address</label>
-                <input type="email" class="form-control" id="contact-email" placeholder="Enter email">
+                <input type="email" class="form-control" id="contact-email" name="email" placeholder="Enter email" required>
             </div>
             <div class="form-group">
                 <label for="message">Message</label>
-                <textarea class="form-control" id="message" rows="3"></textarea>
+                <textarea class="form-control" id="message" name="message" rows="3" required></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Send</button>
         </form>
-        <p>Email: contact@example.com</p>
-        <p>Phone: 123-456-7890</p>
-        <p>Office: 123 Main St, City, Country</p>
     </section>
-
+    
     <section id="legal" class="container my-4">
         <h2>Privacy Policy and Terms of Service</h2>
         <p><a href="privacy.html">Privacy Policy</a></p>
         <p><a href="terms.html">Terms of Service</a></p>
     </section>
-
+    
     <footer class="bg-dark text-white text-center py-3">
         <p>&copy; 2024 News Categories</p>
     </footer>
